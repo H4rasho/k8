@@ -6,6 +6,7 @@
   "scripts": {
     "start": "nest start",
     "start:dev": "nest start --watch",
+    "build": "nest build",
     "lint": "eslint src --fix --ext .ts & prettier --check .",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -15,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@nestjs/cli": "9.4.1",
     "@nestjs/common": "9.2.1",
     "@nestjs/core": "9.2.1",
     "@nestjs/mapped-types": "*",

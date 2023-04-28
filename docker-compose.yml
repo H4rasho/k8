@@ -1,9 +1,15 @@
 version: "3.9"
 services:
   zoo_app:
-    build: .
+    build: "./zoo"
     ports:
-      - "${PORT}:${PORT}"
+      - "3000:3000"
+    links:
+      - pg_db
+  user_app:
+    build: "./users"
+    ports:
+      - "4000:5000"
     links:
       - pg_db
   pg_db:
