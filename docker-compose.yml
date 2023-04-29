@@ -9,9 +9,19 @@ services:
   user_app:
     build: "./users"
     ports:
-      - "4000:5000"
+      - "5000:5000"
     links:
       - pg_db
+  react_app:
+    build: "./front/"
+    ports:
+      - "3001:3001"
+    depends_on:
+      - zoo_app
+      - user_app
+    links:
+      - zoo_app
+      - user_app
   pg_db:
     image: postgres
     ports:
