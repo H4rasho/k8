@@ -31,6 +31,15 @@ services:
       POSTGRES_DB: ${DB_NAME}
     volumes:
       - pg_data:/var/lib/postgresql/data
+  nginx:
+    build: ./nginx
+    restart: always
+    ports:
+      - "3002:80"
+    depends_on:
+      - react_app
+      - zoo_app
+      - user_app
 
 volumes:
   pg_data:

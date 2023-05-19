@@ -8,8 +8,11 @@ cur.execute("CREATE TABLE IF NOT EXISTS users (id serial PRIMARY KEY, name varch
 @app.route('/')
 def getUsers():
     cur.execute("SELECT * FROM users;")
-    # Return a list of users in JSON format
-    return str(cur.fetchall())
+    users = []
+    # return user list in json format
+    for user in cur.fetchall():
+        users.append({"id": user[0], "name": user[1]})
+    return users
 
 
 if __name__ == "__main__":

@@ -2,10 +2,18 @@ import { useEffect } from "react";
 import "./App.css";
 import { useState } from "react";
 
-const USER_API = "http://user_app:5000";
+const ZOO_API = "/zoo/animals";
+const USER_API = "/user";
 
 function App() {
+  const [animals, setAnimals] = useState([]);
   const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    fetch(ZOO_API)
+      .then((res) => res.json())
+      .then((data) => setAnimals(data));
+  }, []);
 
   useEffect(() => {
     fetch(USER_API)
@@ -15,7 +23,15 @@ function App() {
 
   return (
     <>
-      <h1>Users App</h1>
+      <h2>Animals App</h2>
+      <div>
+        {animals.map((animal) => (
+          <div key={animal.id}>
+            <h3>{animal.name}</h3>
+          </div>
+        ))}
+      </div>
+      <h2>Users</h2>
       <div>
         {users.map((user) => (
           <div key={user.id}>
